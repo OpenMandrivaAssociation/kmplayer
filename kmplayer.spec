@@ -1,10 +1,3 @@
-%define use_enable_final 1
-%{?_no_enable_final: %{expand: %%global use_enable_final 0}}
-
-%define use_enable_pie 1
-%{?_no_enable_pie: %{expand: %%global use_enable_pie 0}}
-
-%define __libtoolize /bin/true 
 
 %define unstable 0
 %{?_with_unstable: %global unstable 1}
@@ -13,23 +6,25 @@
 %define dont_strip 1
 %endif
 
-%define origname kmplayer
+%define name kmplayer
 %define betaver rc2
 
-Name: kde4-%origname
+Name: kde4-%name
 Version: 0.11.0
 Release: %mkrel -c %betaver 4
 Summary: A multimedia mplayer/phonon frontend for KDE
 License: GPLv2+
 Group: Video
 Url: http://kmplayer.kde.org/
-Source:	http://kmplayer.kde.org/pkgs/%{origname}-%{version}-%{betaver}.tar.bz2
+Source:	http://kmplayer.kde.org/pkgs/%{name}-%{version}-%{betaver}.tar.bz2
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: kdelibs4-devel
 BuildRequires: libnspr-devel
 BuildRequires: gtk2-devel
 BuildRequires: dbus-glib-devel
-Conflicts: kmplayer < %version
+
+Obsoletes:     kde4-%name <= 0.11.0-0.rc2.4
+Provides:      kde4-%name
 
 %description
 KMPlayer can play all the audio/video supported by mplayer/phonon from local
@@ -48,7 +43,7 @@ file or url, be embedded inside Konqueror and KHTML and play DVD's.
 %doc ChangeLog README
 %{_kde_bindir}/kmplayer
 %{_kde_bindir}/kphononplayer
-%{_kde_datadir}/apps/%{origname}
+%{_kde_datadir}/apps/%{name}
 %{_kde_datadir}/kde4/services/*.desktop
 %{_kde_libdir}/*.so
 %{_kde_libdir}/kde4/*.so
@@ -72,7 +67,7 @@ Kmplayer netscape plugin player.
 #--------------------------------------------------------------------
 
 %prep
-%setup -q -n %{origname}-%{version}-%{betaver}
+%setup -q -n %{name}-%{version}-%{betaver}
 
 %build
 %cmake_kde4
@@ -86,7 +81,7 @@ cd -
 
 rm -fr %buildroot%_kde_datadir/doc/HTML/en/doc/
 # icons/oxygen/*. conflicts with oxygen-icon-theme
-rm -f %buildroot%_kde_iconsdir/oxygen/*/apps/%origname.*
+rm -f %buildroot%_kde_iconsdir/oxygen/*/apps/%name.*
 
 %{find_lang} %{name} --with-html
 
