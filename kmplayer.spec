@@ -9,9 +9,9 @@
 %define name kmplayer
 %define betaver rc2
 
-Name: kde4-%name
+Name: %name
 Version: 0.11.0
-Release: %mkrel -c %betaver 4
+Release: %mkrel -c %betaver 5
 Summary: A multimedia mplayer/phonon frontend for KDE
 License: GPLv2+
 Group: Video
