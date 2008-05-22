@@ -11,7 +11,7 @@
 
 Name: %name
 Version: 0.11.0
-Release: %mkrel -c %betaver 5
+Release: %mkrel -c %betaver 6
 Summary: A multimedia mplayer/phonon frontend for KDE
 License: GPLv2+
 Group: Video
@@ -23,7 +23,7 @@ BuildRequires: libnspr-devel
 BuildRequires: gtk2-devel
 BuildRequires: dbus-glib-devel
 
-Obsoletes:     kde4-%name <= 0.11.0-0.rc2.4
+Obsoletes:     kde4-%name < 0.11.0-0.rc2.5
 Provides:      kde4-%name
 
 %description
