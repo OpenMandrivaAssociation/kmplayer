@@ -11,7 +11,7 @@
 
 Name: %name
 Version: 0.11.0
-Release: %mkrel -c %betaver 1
+Release: %mkrel -c %betaver 2
 Summary: A multimedia mplayer/phonon frontend for KDE
 License: GPLv2+
 Group: Video
@@ -70,6 +70,7 @@ Kmplayer netscape plugin player.
 %setup -q -n %{name}-%{version}-%{betaver}
 
 %build
+LDFLAGS="$LDFLAGS -Wl,--as-needed -Wl,--no-undefined"; export LDFLAGS ;
 %cmake_kde4
 %make
 
