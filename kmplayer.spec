@@ -32,11 +32,15 @@ file or url, be embedded inside Konqueror and KHTML and play DVD's.
 
 %post
 %{update_menus}
+%if %mdkversion < 200900
 /sbin/ldconfig
+%endif
 
 %postun
 %{clean_menus}
+%if %mdkversion < 200900
 /sbin/ldconfig
+%endif
 
 %files -f %{name}.lang
 %defattr(-,root,root)
