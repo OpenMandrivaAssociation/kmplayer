@@ -11,7 +11,7 @@
 
 Name: %name
 Version: 0.11.0
-Release: %mkrel -c %betaver 2
+Release: %mkrel -c %betaver 3
 Summary: A multimedia mplayer/phonon frontend for KDE
 License: GPLv2+
 Group: Video
