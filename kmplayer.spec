@@ -11,7 +11,7 @@
 
 Name: %name
 Version: 0.11.0
-Release: %mkrel -c %betaver 3
+Release: %mkrel -c %betaver 4
 Summary: A multimedia mplayer/phonon frontend for KDE
 License: GPLv2+
 Group: Video
@@ -52,10 +52,11 @@ file or url, be embedded inside Konqueror and KHTML and play DVD's.
 %{_kde_bindir}/kmplayer
 %{_kde_bindir}/kphononplayer
 %{_kde_datadir}/apps/%{name}
-%{_kde_datadir}/kde4/services/*.desktop
+%_kde_services/*.desktop
 %{_kde_libdir}/*.so
 %{_kde_libdir}/kde4/*.so
 %{_kde_iconsdir}/*/*/*/*
+%_kde_applicationsdir/*
 
 #--------------------------------------------------------------------
 
@@ -84,9 +85,11 @@ LDFLAGS="$LDFLAGS -Wl,--as-needed -Wl,--no-undefined"; export LDFLAGS ;
 
 %install
 rm -rf %buildroot
-cd build
-%makeinstall_std
-cd -
+%makeinstall_std -C build
+
+# Wrong desktop place
+mkdir -p %buildroot/%_kde_applicationsdir
+mv %buildroot/%_kde_services/kmplayer.desktop  %buildroot/%_kde_applicationsdir/
 
 rm -fr %buildroot%_kde_datadir/doc/HTML/en/doc/
 # icons/oxygen/*. conflicts with oxygen-icon-theme
