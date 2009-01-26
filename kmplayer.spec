@@ -1,22 +1,12 @@
-
-%define unstable 0
-%{?_with_unstable: %global unstable 1}
-
-%if %unstable
-%define dont_strip 1
-%endif
-
-%define name kmplayer
-%define betaver rc4
-
-Name: %name
-Version: 0.11.0
-Release: %mkrel -c %betaver 4
+Name: kmplayer
+Version: 0.11.0a
+Release: %mkrel 1
 Summary: A multimedia mplayer/phonon frontend for KDE
 License: GPLv2+
 Group: Video
 Url: http://kmplayer.kde.org/
-Source:	http://kmplayer.kde.org/pkgs/%{name}-%{version}-%{betaver}.tar.bz2
+Source:	http://kmplayer.kde.org/pkgs/%{name}-%{version}.tar.bz2
+Patch0: kmplayer-0.11.0a-docpath.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: kdelibs4-devel
 BuildRequires: libnspr-devel
@@ -52,11 +42,12 @@ file or url, be embedded inside Konqueror and KHTML and play DVD's.
 %{_kde_bindir}/kmplayer
 %{_kde_bindir}/kphononplayer
 %{_kde_datadir}/apps/%{name}
-%_kde_services/*.desktop
+%{_kde_services}/*.desktop
+%{_kde_configdir}/%{name}rc
 %{_kde_libdir}/*.so
 %{_kde_libdir}/kde4/*.so
 %{_kde_iconsdir}/*/*/*/*
-%_kde_applicationsdir/*
+%{_kde_applicationsdir}/*
 
 #--------------------------------------------------------------------
 
@@ -76,10 +67,10 @@ Kmplayer netscape plugin player.
 #--------------------------------------------------------------------
 
 %prep
-%setup -q -n %{name}-%{version}-%{betaver}
+%setup -q -n %{name}-%{version}
+%patch0 -p0
 
 %build
-LDFLAGS="$LDFLAGS -Wl,--as-needed -Wl,--no-undefined"; export LDFLAGS ;
 %cmake_kde4
 %make
 
@@ -87,11 +78,6 @@ LDFLAGS="$LDFLAGS -Wl,--as-needed -Wl,--no-undefined"; export LDFLAGS ;
 rm -rf %buildroot
 %makeinstall_std -C build
 
-# Wrong desktop place
-mkdir -p %buildroot/%_kde_applicationsdir
-mv %buildroot/%_kde_services/kmplayer.desktop  %buildroot/%_kde_applicationsdir/
-
-rm -fr %buildroot%_kde_datadir/doc/HTML/en/doc/
 # icons/oxygen/*. conflicts with oxygen-icon-theme
 rm -f %buildroot%_kde_iconsdir/oxygen/*/apps/%name.*
 
