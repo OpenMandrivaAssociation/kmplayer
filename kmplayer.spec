@@ -20,22 +20,6 @@ Provides:      kde4-%name
 KMPlayer can play all the audio/video supported by mplayer/phonon from local
 file or url, be embedded inside Konqueror and KHTML and play DVD's.
 
-%post
-%if %mdkversion < 200900
-%{update_menus}
-%endif
-%if %mdkversion < 200900
-/sbin/ldconfig
-%endif
-
-%postun
-%if %mdkversion < 200900
-%{clean_menus}
-%endif
-%if %mdkversion < 200900
-/sbin/ldconfig
-%endif
-
 %files -f %{name}.lang
 %defattr(-,root,root)
 %doc ChangeLog README
