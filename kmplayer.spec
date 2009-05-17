@@ -1,5 +1,5 @@
 Name: kmplayer
-Version: 0.11.1
+Version: 0.11.1a
 Release: %mkrel 1
 Summary: A multimedia mplayer/phonon frontend for KDE
 License: GPLv2+
