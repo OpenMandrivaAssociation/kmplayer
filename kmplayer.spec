@@ -1,6 +1,6 @@
 Name:		kmplayer
 Version:	0.11.2
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	A multimedia mplayer/phonon frontend for KDE
 License:	GPLv2+
 Group:		Video
@@ -60,8 +60,11 @@ Kmplayer netscape plugin player.
 rm -rf %buildroot
 %makeinstall_std -C build
 
-# icons/oxygen/*. conflicts with oxygen-icon-theme
-rm -f %buildroot%_kde_iconsdir/oxygen/*/apps/%name.*
+# fix .desktop file
+desktop-file-install \
+		--vendor="" \
+		--remove-mime-type="uri/mms;uri/pnm;uri/rtspt;uri/rtspu" \
+		--dir %{buildroot}%{_kde_applicationsdir} %{buildroot}%{_kde_applicationsdir}/%{name}.desktop
 
 %{find_lang} %{name} --with-html
 
