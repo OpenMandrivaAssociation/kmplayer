@@ -67,5 +67,10 @@ desktop-file-install \
 
 %{find_lang} %{name} --with-html
 
+%check
+for f in %{buildroot}%{_kde_datadir}/applications/kde4/*.desktop ; do
+     desktop-file-validate $f
+done
+
 %clean
 rm -rf %{buildroot}
