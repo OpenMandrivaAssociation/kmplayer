@@ -11,9 +11,8 @@ BuildRequires:	kdelibs4-devel
 BuildRequires:	libnspr-devel
 BuildRequires:	gtk2-devel
 BuildRequires:	dbus-glib-devel
-
-Obsoletes:	kde4-%name < 0.11.0-0.rc2.5
-Provides:	kde4-%name
+BuildRequires:	desktop-file-utils
+Obsoletes:	kde4-%{name} < 0.11.0-0.rc2.5
 
 %description
 KMPlayer can play all the audio/video supported by mplayer/phonon from local
@@ -22,30 +21,30 @@ file or url, be embedded inside Konqueror and KHTML and play DVD's.
 %files -f %{name}.lang
 %defattr(-,root,root)
 %doc ChangeLog README
-%{_kde_bindir}/kmplayer
+%{_kde_bindir}/%{name}
 %{_kde_bindir}/kphononplayer
 %{_kde_datadir}/apps/%{name}
 %{_kde_services}/*.desktop
 %{_kde_configdir}/%{name}rc
 %{_kde_libdir}/*.so
 %{_kde_libdir}/kde4/*.so
-%{_kde_iconsdir}/*/*/*/*
-%{_kde_applicationsdir}/*
+%{_kde_iconsdir}/hicolor/*/*/*
+%{_kde_applicationsdir}/%{name}.desktop
 
 #--------------------------------------------------------------------
 
-%package npplayer
-Group: Video
-Summary: Kmplayer netscape plugin player
-Requires: %name
+%package	npplayer
+Group:		Video
+Summary:	Kmplayer netscape plugin player
+Requires:	%{name}
 
-%description npplayer
+%description	npplayer
 Kmplayer netscape plugin player.
 
 %files npplayer
 %defattr(-,root,root)
 %doc AUTHORS ChangeLog README
-%_kde_bindir/knpplayer
+%{_kde_bindir}/knpplayer
 
 #--------------------------------------------------------------------
 
@@ -57,7 +56,7 @@ Kmplayer netscape plugin player.
 %make
 
 %install
-rm -rf %buildroot
+rm -rf %{buildroot}
 %makeinstall_std -C build
 
 # fix .desktop file
@@ -69,4 +68,4 @@ desktop-file-install \
 %{find_lang} %{name} --with-html
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
