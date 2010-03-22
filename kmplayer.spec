@@ -10,7 +10,6 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	kdelibs4-devel
 BuildRequires:	libnspr-devel
 BuildRequires:	gtk2-devel
-BuildRequires:	dbus-glib-devel
 BuildRequires:	desktop-file-utils
 Obsoletes:	kde4-%{name} < 0.11.0-0.rc2.5
 
