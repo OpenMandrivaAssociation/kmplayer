@@ -1,6 +1,6 @@
 Name:		kmplayer
 Version:	0.11.2a
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	A multimedia mplayer/phonon frontend for KDE
 License:	GPLv2+
 Group:		Video
@@ -13,6 +13,7 @@ BuildRequires:	gtk2-devel
 BuildRequires:	dbus-glib-devel
 BuildRequires:	desktop-file-utils
 Obsoletes:	kde4-%{name} < 0.11.0-0.rc2.5
+Suggests:	mplayer
 
 %description
 KMPlayer can play all the audio/video supported by mplayer/phonon from local
