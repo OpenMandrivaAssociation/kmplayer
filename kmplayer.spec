@@ -12,6 +12,7 @@ BuildRequires:	libnspr-devel
 BuildRequires:	gtk2-devel
 BuildRequires:	dbus-glib-devel
 BuildRequires:	desktop-file-utils
+BuildRequires:	libxt-devel
 Obsoletes:	kde4-%{name} < 0.11.0-0.rc2.5
 Suggests:	mplayer
 
