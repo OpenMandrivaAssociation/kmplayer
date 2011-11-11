@@ -6,6 +6,7 @@ License:	GPLv2+
 Group:		Video
 Url:		http://kmplayer.kde.org/
 Source:		http://kmplayer.kde.org/pkgs/%{name}-%{version}.tar.bz2
+Patch0:		kmplayer-0.11.3a-glib.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	kdelibs4-devel
 BuildRequires:	libnspr-devel
@@ -52,6 +53,7 @@ Kmplayer netscape plugin player.
 
 %prep
 %setup -q -n %{name}-%{version}
+%patch0 -p1 -b .glib
 
 %build
 %cmake_kde4
