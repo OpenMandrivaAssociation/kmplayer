@@ -1,5 +1,5 @@
 Name:		kmplayer
-Version:	0.11.3a
+Version:	0.11.3b
 Release:	%mkrel 1
 Summary:	A multimedia mplayer/phonon frontend for KDE
 License:	GPLv2+
@@ -7,7 +7,6 @@ Group:		Video
 Url:		http://kmplayer.kde.org/
 Source:		http://kmplayer.kde.org/pkgs/%{name}-%{version}.tar.bz2
 Patch0:		kmplayer-0.11.3a-glib.patch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	kdelibs4-devel
 BuildRequires:	libnspr-devel
 BuildRequires:	gtk2-devel
@@ -60,7 +59,7 @@ Kmplayer netscape plugin player.
 %make
 
 %install
-rm -rf %{buildroot}
+%__rm -rf %{buildroot}
 %makeinstall_std -C build
 
 # fix .desktop file
@@ -69,7 +68,7 @@ desktop-file-install \
 		--remove-mime-type="uri/mms;uri/pnm;uri/rtspt;uri/rtspu" \
 		--dir %{buildroot}%{_kde_applicationsdir} %{buildroot}%{_kde_applicationsdir}/%{name}.desktop
 
-%{find_lang} %{name} --with-html
+%find_lang %{name} --with-html
 
 %check
 for f in %{buildroot}%{_kde_datadir}/applications/kde4/*.desktop ; do
@@ -77,4 +76,4 @@ for f in %{buildroot}%{_kde_datadir}/applications/kde4/*.desktop ; do
 done
 
 %clean
-rm -rf %{buildroot}
+%__rm -rf %{buildroot}
