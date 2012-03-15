@@ -1,13 +1,11 @@
 Name:		kmplayer
-Version:	0.11.3b
+Version:	0.11.3c
 Release:	%mkrel 1
 Summary:	A multimedia mplayer/phonon frontend for KDE
 License:	GPLv2+
 Group:		Video
 Url:		http://kmplayer.kde.org/
-Source:		http://kmplayer.kde.org/pkgs/%{name}-%{version}.tar.bz2
-Patch0:		kmplayer-0.11.3a-glib.patch
-Patch1:		kmplayer-0.11.3b-dso.patch
+Source0:	http://kmplayer.kde.org/pkgs/%{name}-%{version}.tar.bz2
 BuildRequires:	kdelibs4-devel
 BuildRequires:	libnspr-devel
 BuildRequires:	gtk2-devel
@@ -21,8 +19,7 @@ Suggests:	mplayer
 KMPlayer can play all the audio/video supported by mplayer/phonon from local
 file or url, be embedded inside Konqueror and KHTML and play DVD's.
 
-%files
-%defattr(-,root,root)
+%files -f %{name}.lang
 %doc ChangeLog README
 %{_kde_bindir}/%{name}
 %{_kde_bindir}/kphononplayer
@@ -33,6 +30,8 @@ file or url, be embedded inside Konqueror and KHTML and play DVD's.
 %{_kde_libdir}/kde4/*.so
 %{_kde_iconsdir}/hicolor/*/*/*
 %{_kde_applicationsdir}/%{name}.desktop
+%{_docdir}/HTML/en/%{name}/common
+%{_docdir}/HTML/en/%{name}/index*
 
 #--------------------------------------------------------------------
 
@@ -45,24 +44,21 @@ Requires:	%{name}
 Kmplayer netscape plugin player.
 
 %files npplayer
-%defattr(-,root,root)
 %doc AUTHORS ChangeLog README
 %{_kde_bindir}/knpplayer
-
 #--------------------------------------------------------------------
 
 %prep
 %setup -q -n %{name}-%{version}
-%patch0 -p1 -b .glib
-%patch1 -p1 -b .dso
 
 %build
 %cmake_kde4
 %make
 
 %install
-%__rm -rf %{buildroot}
 %makeinstall_std -C build
+
+%find_lang %{name}
 
 # fix .desktop file
 desktop-file-install \
@@ -74,6 +70,3 @@ desktop-file-install \
 for f in %{buildroot}%{_kde_datadir}/applications/kde4/*.desktop ; do
      desktop-file-validate $f
 done
-
-%clean
-%__rm -rf %{buildroot}
