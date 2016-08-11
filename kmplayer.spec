@@ -7,6 +7,7 @@ Group:		Video
 Url:		http://kmplayer.kde.org/
 Source0:	http://download.kde.org/stable/kmplayer/0.12/kmplayer-%{version}.tar.bz2
 BuildRequires:	desktop-file-utils
+BildRequires:	docbook-dtd42-xml
 BuildRequires:	pkgconfig(cairo)
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(gtk+-2.0)
