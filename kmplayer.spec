@@ -53,11 +53,11 @@ file or url, be embedded inside Konqueror and KHTML and play DVD's.
 %{_kde5_bindir}/kphononplayer
 %{_kde5_datadir}/%{name}/
 %{_kde5_services}/*.desktop
-%{_kde5_datadir}/kxmlgui5/%{name}/
+#{_kde5_datadir}/kxmlgui5/%{name}/
 %{_kde5_libdir}/*.so
-%{_qt5_plugindir}/*.so
+#{_qt5_plugindir}/*.so
 %{_kde5_iconsdir}/hicolor/*/*/*
-%{_kde5_applicationsdir}/%{name}.desktop
+#{_kde5_applicationsdir}/%{name}.desktop
 %config(noreplace) %{_kde5_sysconfdir}/xdg/%{name}rc
 
 #--------------------------------------------------------------------
