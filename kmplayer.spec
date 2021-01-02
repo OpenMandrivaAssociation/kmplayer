@@ -1,11 +1,17 @@
+%define gitdate 20201207
+
 Name:		kmplayer
-Version:	0.12.0a
-Release:	1
+Version:	0.12.0b
+Release:	1.%{gitdate}.0
 Summary:	A multimedia mplayer/phonon frontend for KDE
 License:	GPLv2+
 Group:		Video
 Url:		http://kmplayer.kde.org/
-Source0:	http://download.kde.org/stable/kmplayer/0.12/kmplayer-%{version}.tar.bz2
+#Source0:	http://download.kde.org/stable/kmplayer/0.12/kmplayer-%{version}.tar.bz2
+# Upstream releases is inactive from while, so lets use latest git
+Source0:  https://invent.kde.org/multimedia/kmplayer/-/archive/master/kmplayer-master.tar.bz2
+
+
 BuildRequires:	desktop-file-utils
 BuildRequires:	docbook-dtd42-xml
 BuildRequires:	pkgconfig(cairo)
@@ -14,6 +20,8 @@ BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	gettext
 # Kf5 BuildRequires
+BuildRequires:  cmake
+BuildRequires:  cmake(ECM)
 BuildRequires:	cmake(KF5Config)
 BuildRequires:	cmake(KF5CoreAddons)
 BuildRequires:	cmake(KF5Init)
@@ -71,8 +79,8 @@ Kmplayer netscape plugin player.
 %setup -q -n %{name}-%{version}
 
 %build
-export CC=gcc
-export CXX=g++
+#export CC=gcc
+#export CXX=g++
 %cmake_kde5
 %ninja 
 
