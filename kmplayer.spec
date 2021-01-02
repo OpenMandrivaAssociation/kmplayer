@@ -76,7 +76,7 @@ Kmplayer netscape plugin player.
 #--------------------------------------------------------------------
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -n %{name}-master
 
 %build
 #export CC=gcc
