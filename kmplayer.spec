@@ -53,11 +53,13 @@ file or url, be embedded inside Konqueror and KHTML and play DVD's.
 %{_kde5_bindir}/kphononplayer
 %{_kde5_datadir}/%{name}/
 %{_kde5_services}/*.desktop
-#{_kde5_datadir}/kxmlgui5/%{name}/
 %{_kde5_libdir}/*.so
-#{_qt5_plugindir}/*.so
+%{_libdir}/qt5/plugins/kf5/parts/kmplayerpart.so
 %{_kde5_iconsdir}/hicolor/*/*/*
-#{_kde5_applicationsdir}/%{name}.desktop
+%{_datadir}/applications/org.kde.kmplayer.desktop
+%{_datadir}/metainfo/org.kde.kmplayer.appdata.xml
+%{_datadir}/qlogging-categories5/kmplayer.categories
+
 %config(noreplace) %{_kde5_sysconfdir}/xdg/%{name}rc
 
 #--------------------------------------------------------------------
@@ -79,8 +81,6 @@ Kmplayer netscape plugin player.
 %setup -q -n %{name}-master
 
 %build
-#export CC=gcc
-#export CXX=g++
 %cmake_kde5
 %ninja 
 
