@@ -6,7 +6,7 @@ Release:	1.%{gitdate}.0
 Summary:	A multimedia mplayer/phonon frontend for KDE
 License:	GPLv2+
 Group:		Video
-Url:		http://kmplayer.kde.org/
+Url:		https://kmplayer.kde.org/
 #Source0:	http://download.kde.org/stable/kmplayer/0.12/kmplayer-%{version}.tar.bz2
 # Upstream releases is inactive from while, so lets use latest git
 Source0:  https://invent.kde.org/multimedia/kmplayer/-/archive/master/kmplayer-master.tar.bz2
